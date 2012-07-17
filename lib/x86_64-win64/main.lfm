@@ -477,9 +477,11 @@ object CompForm: TCompForm
       end
       object MenuItem4: TMenuItem
         Caption = 'Save form'
+        OnClick = MenuItem4Click
       end
       object MenuItem5: TMenuItem
         Caption = 'Load form'
+        OnClick = MenuItem5Click
       end
       object MenuItem6: TMenuItem
         Caption = '-------------'
