@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <Compiler Value="C:\lazarus\fpc\2.6.0\bin\x86_64-win64\fpc.exe" Date="1080972898"/>
+  <Params Value=" -MObjFPC -Scghi -O3 -OoUNCERTAIN -gl -Xg -Xs -XX -WG -vewnhi -l -FiE:\Coding\smbFrmDesigner\lib\x86_64-win64 -FuE:\Coding\smbFrmDesigner\lib\x86_64-win64 -FuC:\lazarus\components\synedit\units\x86_64-win64 -FuC:\lazarus\ideintf\units\x86_64-win64 -FuC:\lazarus\lcl\units\x86_64-win64 -FuC:\lazarus\lcl\units\x86_64-win64\win32 -FuC:\lazarus\packager\units\x86_64-win64 -FuE:\Coding\smbFrmDesigner\ -Fu. -FUE:\Coding\smbFrmDesigner\lib\x86_64-win64\ -os_frm_dsgn.exe -dLCL -dLCLwin32 s_frm_dsgn.lpr"/>
+</CONFIG>
