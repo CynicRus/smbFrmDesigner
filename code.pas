@@ -19,9 +19,9 @@ type
     procedure FormCreate(Sender: TObject);
   private
     CmpList: TSimbaComponentList;
-    labels,edits,images,buttons,checkboxes,listboxes,comboboxes,RadBtns: TSimbaComponentList;
+    labels,edits,images,buttons,checkboxes,listboxes,comboboxes,pbars: TSimbaComponentList;
     FormCode,LabelsCode,EditsCode,ImagesCode,ButtonsCode,CheckBoxesCode,ListBoxesCode,
-    ComboBoxesCode, RadBtnsCode,HeaderCode,ScriptCode: TStringList;
+    ComboBoxesCode, ProgressBarsCode,HeaderCode,ScriptCode: TStringList;
     procedure GenerateScriptHeader;
     { private declarations }
   public
@@ -54,7 +54,7 @@ begin
   CheckBoxes.Free;
   ListBoxes.Free;
   ComboBoxes.Free;
-  RadBtns.Free;
+  pbars.Free;
   CmpList.Free;
   HeaderCode.Free;
   ScriptCode.Free;
@@ -64,7 +64,7 @@ begin
   CheckBoxesCode.Free;
   ListBoxesCode.Free;
   ComboBoxesCode.Free;
-  RadBtnsCode.Free;
+  ProgressBarsCode.Free;
   FormCode.Free;
   Stream.Free;
 end;
@@ -79,7 +79,7 @@ begin
   CheckBoxes:=TSimbaComponentList.Create;
   ListBoxes:=TSimbaComponentList.Create;
   ComboBoxes:=TSimbaComponentList.Create;
-  RadBtns:=TSimbaComponentList.Create;
+  pbars:=TSimbaComponentList.Create;
   CmpList:=TSimbaComponentList.Create;
   HeaderCode:=TStringList.Create;
   ScriptCode:=TStringList.Create;
@@ -90,7 +90,7 @@ begin
   CheckBoxesCode:=TStringList.Create;
   ListBoxesCode:=TStringList.Create;
   ComboBoxesCode:=TStringList.Create;
-  RadBtnsCode:=TStringList.Create;
+  ProgressBarsCode:=TStringList.Create;
   FormCode:=TStringList.Create;
   imageNo:=0;
 end;
@@ -209,18 +209,18 @@ if ComboBoxes.count> 0 then
   i:=0;
   HeaderCode.Add(s+': TComboBox;');
 end;
-if RadBtns.count> 0 then
+if Pbars.count> 0 then
   begin
   s:='';
-  for i:=0 to RadBtns.count -1 do
+  for i:=0 to Pbars.count -1 do
   begin
-   if i<RadBtns.Count-1 then
-   s:=s+RadBtns.GetComponent(i).compname+','
+   if i<Pbars.Count-1 then
+   s:=s+Pbars.GetComponent(i).compname+','
     else
-   s:=s+RadBtns.GetComponent(i).compname;
+   s:=s+Pbars.GetComponent(i).compname;
   end;
   i:=0;
-  HeaderCode.Add(s+': TRadioButton;');
+  HeaderCode.Add(s+': TProgressBar;');
 end;
 //HeaderCode.Add('b, w, h: Integer;');
 HeaderCode.Add('const');
@@ -253,7 +253,7 @@ begin
     result:=6;
    if CompareText(smb.classname, 'TComboBox') = 0 then
     result:=7;
-   if CompareText(smb.classname, 'TRadioButton') = 0 then
+   if CompareText(smb.classname, 'TProgressBar') = 0 then
     result:=8;
 end;
 procedure TCodeGen.GetComponentCode(smbl: TSimbaComponentList);
@@ -274,7 +274,7 @@ begin
      5: begin SmbToCodeList(smb,CheckBoxesCode);CheckBoxes.AddItem(smb,i);end;
      6: begin SmbToCodeList(smb,ListBoxesCode);ListBoxes.AddItem(smb,i);end;
      7: begin SmbToCodeList(smb,ComboBoxesCode);ComboBoxes.AddItem(smb,i);end;
-     8: begin SmbToCodeList(smb,RadBtnsCode);RadBtns.AddItem(smb,i);end;
+     8: begin SmbToCodeList(smb,ProgressBarsCode);pbars.AddItem(smb,i);end;
      end;
    end;
   GenerateScriptHeader;
@@ -398,14 +398,10 @@ begin
        list.Add('//'+smb.compname+'\\');
        list.Add(smb.compname+':='+smb.classname+'.Create('+cmpList.GetComponent(0).compname+')');
        list.Add(smb.compname+'.Parent:='+cmpList.GetComponent(0).compname+';');
-        list.Add(smb.compname+'.Caption:='+#39+smb.caption+#39+';');
        list.Add(smb.compname+'.Left:='+IntToStr(smb.left)+';');
        list.Add(smb.compname+'.Top:='+IntToStr(smb.top)+';');
        list.Add(smb.compname+'.Width:='+IntToStr(smb.width)+';');
        list.Add(smb.compname+'.Height:='+IntToStr(smb.heigth)+';');
-       list.Add(smb.compname+'.Font.Name:='+smb.fontname+';');
-       list.Add(smb.compname+'.Font.Color:='+ColorToString(smb.fontcolor)+';');
-       list.Add(smb.compname+'.Font.Size:='+IntToStr(smb.fontsize)+';');
 
   end;
 end;
@@ -435,8 +431,8 @@ begin
     ScriptCode.AddStrings(ListBoxesCode);
  if ComboBoxesCode.Count> 0 then
     ScriptCode.AddStrings(ComboBoxesCode);
- if RadBtnsCode.Count> 0 then
-    ScriptCode.AddStrings(RadBtnsCode);
+ if ProgressBarsCode.Count> 0 then
+    ScriptCode.AddStrings(ProgressBarsCode);
  ScriptCode.Add('end;');
  ScriptCode.Add('');
  ScriptCode.Add('procedure SafeInitForm;');

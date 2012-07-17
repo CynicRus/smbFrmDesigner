@@ -192,7 +192,7 @@ begin
   Self.FControlsClassPStd[5] := TCheckBox;
   Self.FControlsClassPStd[6] := TListBox;
   Self.FControlsClassPStd[7] := TComboBox;
-  Self.FControlsClassPStd[8] := TRadioButton;
+  Self.FControlsClassPStd[8] := TProgressBar;
   //eitem:=nil;
   f:=TDsgnForm.Create(self);
   f.Parent:=CompForm.Panel1;
@@ -427,7 +427,7 @@ begin
     result:=6;
    if CompareText(cmp.ClassName, 'TComboBox') = 0 then
     result:=7;
-   if CompareText(cmp.ClassName, 'TRadioButton') = 0 then
+   if CompareText(cmp.ClassName, 'TProgressBar') = 0 then
     result:=8;
  end;
 end;

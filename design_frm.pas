@@ -155,9 +155,9 @@ begin
    if assigned(CurComp) then CurComp:=nil;
    compform.SetControl(Selected);
    CurComp:=Selected;
-   CurComp.OnResize:=@OnResizeCtrl;
-   CurComp.OnChangeBounds:=@OnMoveCtrl;
-   CurComp.PopupMenu:=PopupMenu1;
+   selected.OnResize:=@OnResizeCtrl;
+   selected.OnChangeBounds:=@OnMoveCtrl;
+   selected.PopupMenu:=PopupMenu1;
    popupmenu1.Items[0].Visible:=true;
    popupmenu1.Items[1].Visible:=false;
 //   if assigned(popupmenu1.Items[1]) then
@@ -172,7 +172,7 @@ begin
       popupmenu1.Items[1].OnClick:=@ChooseImg;
       popupmenu1.Items[0].Visible:=false;
       popupmenu1.Items[1].Visible:=true;
-   //   flag:=1;
+      flag:=1;
    //   m.Free;
       end;
        //popupmenu1.Items[0].Caption:='Set Image';
