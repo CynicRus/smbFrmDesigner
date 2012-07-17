@@ -60,14 +60,12 @@
         <ComponentName Value="CompForm"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="382"/>
         <CursorPos X="6" Y="404"/>
         <UsageCount Value="165"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="..\uselectonruntime.pas"/>
@@ -75,7 +73,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="864"/>
         <CursorPos X="24" Y="886"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit2>
       <Unit3>
         <Filename Value="C:\lazarus\lcl\controls.pp"/>
@@ -90,7 +88,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1680"/>
         <CursorPos X="14" Y="1692"/>
-        <UsageCount Value="0"/>
+        <UsageCount Value="10"/>
       </Unit4>
       <Unit5>
         <Filename Value="design_frm.pas"/>
@@ -98,10 +96,11 @@
         <ComponentName Value="DsgnForm"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="design_frm"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="194"/>
-        <CursorPos X="47" Y="203"/>
+        <TopLine Value="146"/>
+        <CursorPos X="5" Y="161"/>
         <UsageCount Value="159"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>

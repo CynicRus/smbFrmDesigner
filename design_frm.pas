@@ -158,6 +158,7 @@ begin
    CurComp.OnResize:=@OnResizeCtrl;
    CurComp.OnChangeBounds:=@OnMoveCtrl;
    CurComp.PopupMenu:=PopupMenu1;
+  // Sor.SelectControl:=CurComp;
    popupmenu1.Items[0].Visible:=true;
    popupmenu1.Items[1].Visible:=false;
 //   if assigned(popupmenu1.Items[1]) then

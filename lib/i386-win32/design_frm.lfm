@@ -7,6 +7,7 @@ object DsgnForm: TDsgnForm
   ClientHeight = 240
   ClientWidth = 320
   KeyPreview = True
+  OnChangeBounds = FormChangeBounds
   OnCreate = FormCreate
   OnKeyUp = FormKeyUp
   OnMouseDown = FormMouseDown
@@ -20,6 +21,7 @@ object DsgnForm: TDsgnForm
     Markers3D = False
     SelectTag = 9999
     OnBeforeSelect = sorBeforeSelect
+    OnCanMove = sorCanMove
     left = 181
     top = 13
   end
