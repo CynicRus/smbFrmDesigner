@@ -108,6 +108,13 @@ object CompForm: TCompForm
           ImageIndex = 8
           OnClick = ToolButton1Click
         end
+        object ToolButton10: TToolButton
+          Tag = 9
+          Left = 208
+          Top = 2
+          Caption = 'ToolButton10'
+          OnClick = ToolButton1Click
+        end
       end
     end
   end
@@ -488,6 +495,7 @@ object CompForm: TCompForm
       end
       object MenuItem7: TMenuItem
         Caption = 'Exit'
+        OnClick = MenuItem7Click
       end
     end
     object MenuItem8: TMenuItem

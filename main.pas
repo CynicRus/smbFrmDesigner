@@ -11,7 +11,7 @@ uses
   types,sclist,StrUtils,code;
 
 type
-  TControlsClassStandard = array [0..8] of TComponentClass;
+  TControlsClassStandard = array [0..9] of TComponentClass;
   THControl = Class(TControl);
 
 
@@ -43,6 +43,7 @@ type
     TabSheet1: TTabSheet;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
+    ToolButton10: TToolButton;
     ToolButton2: TToolButton;
     ToolButton3: TToolButton;
     ToolButton4: TToolButton;
@@ -73,6 +74,7 @@ type
     procedure MenuItem2Click(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
     procedure MenuItem5Click(Sender: TObject);
+    procedure MenuItem7Click(Sender: TObject);
     procedure OnExit(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
   private
@@ -200,6 +202,7 @@ begin
   Self.FControlsClassPStd[6] := TListBox;
   Self.FControlsClassPStd[7] := TComboBox;
   Self.FControlsClassPStd[8] := TRadioButton;
+  Self.FControlsClassPStd[9] := TShape;
   //eitem:=nil;
   f:=TDsgnForm.Create(self);
   f.Parent:=CompForm.Panel1;
@@ -395,6 +398,11 @@ procedure TCompForm.MenuItem5Click(Sender: TObject);
 begin
   if ofdlg.Execute then
    compform.LoadDesignForm(ofdlg.FileName);
+end;
+
+procedure TCompForm.MenuItem7Click(Sender: TObject);
+begin
+  self.Close;
 end;
 
 
@@ -642,6 +650,7 @@ initialization
   RegisterClass(TDsgnForm);
   RegisterClass(TOpenDialog);
   RegisterClass(TFontDialog);
+  RegisterClass(TShape);
 
 
 
