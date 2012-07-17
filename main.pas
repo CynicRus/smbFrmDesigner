@@ -7,7 +7,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
-  stdctrls, ExtCtrls, Menus, LCLIntf, LCLType, LMessages, Grids, design_frm,
+  stdctrls, ExtCtrls, Menus, LCLIntf, LCLType, LCLProc, LResources, LMessages, Grids, design_frm,
   types,sclist,StrUtils,code;
 
 type
@@ -71,6 +71,8 @@ type
     procedure lvSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
     procedure MenuItem10Click(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
+    procedure MenuItem4Click(Sender: TObject);
+    procedure MenuItem5Click(Sender: TObject);
     procedure OnExit(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
   private
@@ -79,6 +81,8 @@ type
     function ComponentToSimba(cmp: TControl): TSimbaComponent;
     function GetButtonIndex: Integer;
     procedure ApplySimbaToComponent(smb: TSimbaComponent;cmp: TControl);
+    procedure SaveDesignForm(filename: string);
+    procedure LoadDesignForm(filename: string);
     { private declarations }
   public
     CompList: TSimbaComponentList;
@@ -93,6 +97,8 @@ type
     procedure UpdateControlData();
     procedure SetControl(Sender: TObject);
     function MouseClickOnSubItem(rc: TRect; item: TListItem;x,y: integer): boolean;
+        procedure OnFindClass(Reader: TReader; const AClassName: string;
+                          var ComponentClass: TComponentClass);
   end;
 
 var
@@ -103,6 +109,8 @@ var
   f: TDsgnForm;
   codefrm: TCodeGen;
   curitem: TComponent;
+  sfdlg: TSaveDialog;
+  ofdlg: TOpenDialog;
 implementation
 
 {$R *.lfm}
@@ -127,8 +135,8 @@ end;
    Total, Props, i: Integer;
  begin
    PInfo:=TPropInfoList.Create(Source,Kinds);
-   Total := GetTypeData(Source.ClassInfo).PropCount;
-   GetMem(pList, sizeof(PPropInfo) * Total);
+  // Total := GetTypeData(Source.ClassInfo).PropCount;
+ //  GetMem(pList, sizeof(PPropInfo) * Total);
    try
    // Props := GetPropList( Source.ClassInfo, Kinds, pList );
      Props:=pInfo.Count;
@@ -150,7 +158,7 @@ end;
            List.AddObject(Pinfo.Items[i].Name, TObject(Pinfo.Items[i]));
         end;
    finally
-    FreeMem(pList, sizeof(PPropInfo) * Total);
+    //FreeMem(pList, sizeof(PPropInfo) * Total);
   end;
  end;
 
@@ -203,6 +211,10 @@ begin
   ppEdit.OnExit:=OnExit;
  // AddToStringGrid(f);
  CompList.AddItem(ComponentToSimba(f),0);
+ ofdlg:= TOpenDialog.Create(self);
+ ofdlg.Filter:='Simba form files only|*.smf';
+ sfdlg:= TSaveDialog.Create(self);
+ sfdlg.Filter:='Simba form files|*.smf';
 end;
 
 procedure TCompForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -374,6 +386,18 @@ begin
   f.Show;
 end;
 
+procedure TCompForm.MenuItem4Click(Sender: TObject);
+begin
+  if sfdlg.Execute then
+   compform.SaveDesignForm(sfdlg.FileName);
+end;
+
+procedure TCompForm.MenuItem5Click(Sender: TObject);
+begin
+  if ofdlg.Execute then
+   compform.LoadDesignForm(ofdlg.FileName);
+end;
+
 
 procedure TCompForm.OnExit(Sender: TObject);
 begin
@@ -467,6 +491,52 @@ begin
  cmp.Font.Size:=smb.fontsize;
 end;
 
+procedure TCompForm.SaveDesignForm(filename: string);
+var
+   ms: TMemoryStream;
+   fs: TFileStream;
+begin
+ filename:=filename+'.smf';
+ if not assigned(f) then exit;
+ try
+  ms:= TMemoryStream.Create;
+  fs:= TFileStream.Create(filename,fmCreate);
+  WriteComponentAsBinaryToStream(ms,f);
+  ms.Position:=0;
+  ms.SaveToStream(fs);
+ finally
+  ms.Free;
+  fs.Free;
+  //
+ end;
+end;
+
+procedure TCompForm.LoadDesignForm(filename: string);
+var
+   ms: TMemoryStream;
+   fs: TFileStream;
+   tf: TFindComponentClassEvent;
+   nc: TComponent;
+begin
+   try
+    if assigned(f) then f.Free;
+    f:=nil;
+    nc:=nil;
+   // f:=TDsgnForm.Create(CompForm.Panel1);
+    ms:= TMemoryStream.Create;
+    fs:= TFileStream.Create(filename,fmOpenRead);
+    fs.Position:=0;
+    tf:=OnFindClass;
+    ms.CopyFrom(fs,fs.Size);
+    ms.Position:=0;
+    ReadComponentFromBinaryStream(ms,nc,tf,panel1);
+    f.Show;
+   finally
+    ms.Free;
+    fs.Free;
+   end;
+end;
+
 procedure TCompForm.AddToStringGrid(cmp: TControl);
 begin
   //cursmb:=ComponentToSimba(cmp);
@@ -483,6 +553,13 @@ begin
     cells[1,8]:=IntToStr(curcomp.font.size);
     Cells[1,9]:=ColorToString(curcomp.font.color);
   end;}
+end;
+
+procedure TCompForm.OnFindClass(Reader: TReader; const AClassName: string;
+  var ComponentClass: TComponentClass);
+begin
+  if CompareText(AClassName, 'TDsgnForm') = 0 then
+    ComponentClass := TForm else ComponentClass:=TDsgnForm;
 end;
 
 procedure TCompForm.FormToSCList(form: TForm);
