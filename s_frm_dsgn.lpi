@@ -42,7 +42,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="66">
+    <Units Count="67">
       <Unit0>
         <Filename Value="s_frm_dsgn.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -51,7 +51,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="14"/>
-        <UsageCount Value="152"/>
+        <UsageCount Value="154"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -60,12 +60,11 @@
         <ComponentName Value="CompForm"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="main"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="480"/>
-        <CursorPos X="1" Y="498"/>
-        <UsageCount Value="152"/>
+        <TopLine Value="351"/>
+        <CursorPos X="3" Y="353"/>
+        <UsageCount Value="154"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -100,9 +99,9 @@
         <UnitName Value="design_frm"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="188"/>
-        <CursorPos X="1" Y="211"/>
-        <UsageCount Value="146"/>
+        <TopLine Value="155"/>
+        <CursorPos X="6" Y="175"/>
+        <UsageCount Value="148"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit5>
@@ -172,7 +171,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1305"/>
         <CursorPos X="6" Y="1336"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit14>
       <Unit15>
@@ -252,7 +251,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="358"/>
         <CursorPos X="10" Y="340"/>
-        <UsageCount Value="36"/>
+        <UsageCount Value="38"/>
         <Loaded Value="True"/>
       </Unit24>
       <Unit25>
@@ -278,7 +277,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="45"/>
         <CursorPos X="1" Y="70"/>
-        <UsageCount Value="126"/>
+        <UsageCount Value="128"/>
         <Loaded Value="True"/>
       </Unit27>
       <Unit28>
@@ -311,11 +310,12 @@
         <ComponentName Value="CodeGen"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="code"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="298"/>
-        <CursorPos X="49" Y="449"/>
-        <UsageCount Value="115"/>
+        <TopLine Value="9"/>
+        <CursorPos X="72" Y="22"/>
+        <UsageCount Value="117"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit31>
@@ -569,7 +569,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="251"/>
         <CursorPos X="1" Y="258"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
       </Unit64>
       <Unit65>
@@ -579,6 +579,14 @@
         <CursorPos X="1" Y="730"/>
         <UsageCount Value="10"/>
       </Unit65>
+      <Unit66>
+        <Filename Value="cstruct.pas"/>
+        <UnitName Value="cstruct"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="28" Y="18"/>
+        <UsageCount Value="20"/>
+      </Unit66>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
@@ -602,104 +610,104 @@
         <Caret Line="1227" Column="1" TopLine="1209"/>
       </Position5>
       <Position6>
-        <Filename Value="C:\lazarus\lcl\interfaces\win32\win32callback.inc"/>
-        <Caret Line="1323" Column="1" TopLine="1305"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="452" Column="1" TopLine="432"/>
       </Position6>
       <Position7>
-        <Filename Value="design_frm.pas"/>
-        <Caret Line="209" Column="1" TopLine="188"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="453" Column="1" TopLine="432"/>
       </Position7>
       <Position8>
-        <Filename Value="design_frm.pas"/>
-        <Caret Line="211" Column="1" TopLine="188"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="455" Column="1" TopLine="432"/>
       </Position8>
       <Position9>
-        <Filename Value="C:\lazarus\lcl\include\menuitem.inc"/>
-        <Caret Line="77" Column="1" TopLine="59"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="456" Column="1" TopLine="432"/>
       </Position9>
       <Position10>
-        <Filename Value="C:\lazarus\lcl\include\menuitem.inc"/>
-        <Caret Line="274" Column="1" TopLine="256"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="498" Column="1" TopLine="480"/>
       </Position10>
       <Position11>
-        <Filename Value="C:\lazarus\lcl\include\menuitem.inc"/>
-        <Caret Line="258" Column="1" TopLine="251"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="452" Column="1" TopLine="434"/>
       </Position11>
       <Position12>
-        <Filename Value="C:\lazarus\lcl\interfaces\win32\win32callback.inc"/>
-        <Caret Line="1227" Column="1" TopLine="1209"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="453" Column="1" TopLine="434"/>
       </Position12>
       <Position13>
         <Filename Value="main.pas"/>
-        <Caret Line="452" Column="1" TopLine="432"/>
+        <Caret Line="455" Column="1" TopLine="434"/>
       </Position13>
       <Position14>
         <Filename Value="main.pas"/>
-        <Caret Line="453" Column="1" TopLine="432"/>
+        <Caret Line="456" Column="1" TopLine="434"/>
       </Position14>
       <Position15>
-        <Filename Value="main.pas"/>
-        <Caret Line="455" Column="1" TopLine="432"/>
+        <Filename Value="sclist.pas"/>
+        <Caret Line="63" Column="1" TopLine="45"/>
       </Position15>
       <Position16>
-        <Filename Value="main.pas"/>
-        <Caret Line="456" Column="1" TopLine="432"/>
+        <Filename Value="sclist.pas"/>
+        <Caret Line="64" Column="1" TopLine="45"/>
       </Position16>
       <Position17>
-        <Filename Value="main.pas"/>
-        <Caret Line="498" Column="1" TopLine="480"/>
+        <Filename Value="sclist.pas"/>
+        <Caret Line="65" Column="1" TopLine="45"/>
       </Position17>
       <Position18>
-        <Filename Value="main.pas"/>
-        <Caret Line="452" Column="1" TopLine="434"/>
+        <Filename Value="sclist.pas"/>
+        <Caret Line="66" Column="1" TopLine="45"/>
       </Position18>
       <Position19>
-        <Filename Value="main.pas"/>
-        <Caret Line="453" Column="1" TopLine="434"/>
+        <Filename Value="sclist.pas"/>
+        <Caret Line="67" Column="1" TopLine="45"/>
       </Position19>
       <Position20>
-        <Filename Value="main.pas"/>
-        <Caret Line="455" Column="1" TopLine="434"/>
+        <Filename Value="sclist.pas"/>
+        <Caret Line="68" Column="1" TopLine="45"/>
       </Position20>
       <Position21>
-        <Filename Value="main.pas"/>
-        <Caret Line="456" Column="1" TopLine="434"/>
+        <Filename Value="sclist.pas"/>
+        <Caret Line="69" Column="1" TopLine="45"/>
       </Position21>
       <Position22>
         <Filename Value="sclist.pas"/>
-        <Caret Line="63" Column="1" TopLine="45"/>
+        <Caret Line="70" Column="1" TopLine="45"/>
       </Position22>
       <Position23>
-        <Filename Value="sclist.pas"/>
-        <Caret Line="64" Column="1" TopLine="45"/>
-      </Position23>
-      <Position24>
-        <Filename Value="sclist.pas"/>
-        <Caret Line="65" Column="1" TopLine="45"/>
-      </Position24>
-      <Position25>
-        <Filename Value="sclist.pas"/>
-        <Caret Line="66" Column="1" TopLine="45"/>
-      </Position25>
-      <Position26>
-        <Filename Value="sclist.pas"/>
-        <Caret Line="67" Column="1" TopLine="45"/>
-      </Position26>
-      <Position27>
-        <Filename Value="sclist.pas"/>
-        <Caret Line="68" Column="1" TopLine="45"/>
-      </Position27>
-      <Position28>
-        <Filename Value="sclist.pas"/>
-        <Caret Line="69" Column="1" TopLine="45"/>
-      </Position28>
-      <Position29>
-        <Filename Value="sclist.pas"/>
-        <Caret Line="70" Column="1" TopLine="45"/>
-      </Position29>
-      <Position30>
         <Filename Value="main.pas"/>
         <Caret Line="499" Column="8" TopLine="480"/>
+      </Position23>
+      <Position24>
+        <Filename Value="design_frm.pas"/>
+        <Caret Line="209" Column="17" TopLine="188"/>
+      </Position24>
+      <Position25>
+        <Filename Value="design_frm.pas"/>
+        <Caret Line="175" Column="6" TopLine="155"/>
+      </Position25>
+      <Position26>
+        <Filename Value="main.pas"/>
+        <Caret Line="195" Column="45" TopLine="174"/>
+      </Position26>
+      <Position27>
+        <Filename Value="code.pas"/>
+        <Caret Line="203" Column="19" TopLine="60"/>
+      </Position27>
+      <Position28>
+        <Filename Value="code.pas"/>
+        <Caret Line="24" Column="21" TopLine="3"/>
+      </Position28>
+      <Position29>
+        <Filename Value="code.pas"/>
+        <Caret Line="439" Column="38" TopLine="410"/>
+      </Position29>
+      <Position30>
+        <Filename Value="code.pas"/>
+        <Caret Line="57" Column="10" TopLine="50"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>
@@ -739,16 +747,6 @@
     </Other>
   </CompilerOptions>
   <Debugging>
-    <BreakPoints Count="2">
-      <Item1>
-        <Source Value="design_frm.pas"/>
-        <Line Value="209"/>
-      </Item1>
-      <Item2>
-        <Source Value="main.pas"/>
-        <Line Value="452"/>
-      </Item2>
-    </BreakPoints>
     <Exceptions Count="3">
       <Item1>
         <Name Value="EAbort"/>
