@@ -97,8 +97,7 @@ type
     procedure UpdateControlData();
     procedure SetControl(Sender: TObject);
     function MouseClickOnSubItem(rc: TRect; item: TListItem;x,y: integer): boolean;
-        procedure OnFindClass(Reader: TReader; const AClassName: string;
-                          var ComponentClass: TComponentClass);
+
   end;
 
 var
@@ -493,49 +492,51 @@ end;
 
 procedure TCompForm.SaveDesignForm(filename: string);
 var
-   ms: TMemoryStream;
-   fs: TFileStream;
+  fs: TFileStream;
+  ms: TMemoryStream;
 begin
- filename:=filename+'.smf';
- if not assigned(f) then exit;
- try
-  ms:= TMemoryStream.Create;
-  fs:= TFileStream.Create(filename,fmCreate);
-  WriteComponentAsBinaryToStream(ms,f);
-  ms.Position:=0;
-  ms.SaveToStream(fs);
- finally
-  ms.Free;
-  fs.Free;
-  //
- end;
+  filename:=filename+'.smf';
+   if not assigned(f) then exit;
+  fs := TFileStream.Create(FileName, fmCreate);
+  ms := TMemoryStream.Create;
+  try
+    ms.WriteComponent(f);
+    ms.Position := 0;
+    ObjectBinaryToText(ms, fs);
+  finally
+    ms.Free;
+    fs.Free;
+  end;
 end;
 
 procedure TCompForm.LoadDesignForm(filename: string);
 var
-   ms: TMemoryStream;
-   fs: TFileStream;
-   tf: TFindComponentClassEvent;
-   nc: TComponent;
+ fs: TFileStream;
+  ms: TMemoryStream;
+  i: integer;
 begin
-   try
-    if assigned(f) then f.Free;
-    f:=nil;
-    nc:=nil;
-   // f:=TDsgnForm.Create(CompForm.Panel1);
-    ms:= TMemoryStream.Create;
-    fs:= TFileStream.Create(filename,fmOpenRead);
-    fs.Position:=0;
-    tf:=OnFindClass;
-    ms.CopyFrom(fs,fs.Size);
-    ms.Position:=0;
-    ReadComponentFromBinaryStream(ms,nc,tf,panel1);
-    f.Show;
-   finally
+  if not assigned(f) then
+  begin
+  f:=TDsgnForm.Create(panel1);
+  f.Left:=0;
+  f.Top:=0;
+  f.Show;
+  end;
+  //f:=nil;
+   for i:=f.ComponentCount-1 downto 0 do
+    f.Components[i].Free;
+  fs := TFileStream.Create(FileName, 0);
+  ms := TMemoryStream.Create;
+  try
+    ObjectTextToBinary(fs, ms);
+    ms.Position := 0;
+    ms.ReadComponent(f);
+  finally
     ms.Free;
     fs.Free;
-   end;
+  end;
 end;
+
 
 procedure TCompForm.AddToStringGrid(cmp: TControl);
 begin
@@ -553,13 +554,6 @@ begin
     cells[1,8]:=IntToStr(curcomp.font.size);
     Cells[1,9]:=ColorToString(curcomp.font.color);
   end;}
-end;
-
-procedure TCompForm.OnFindClass(Reader: TReader; const AClassName: string;
-  var ComponentClass: TComponentClass);
-begin
-  if CompareText(AClassName, 'TDsgnForm') = 0 then
-    ComponentClass := TForm else ComponentClass:=TDsgnForm;
 end;
 
 procedure TCompForm.FormToSCList(form: TForm);
@@ -634,6 +628,22 @@ function TCompForm.MouseClickOnSubItem(rc: TRect; item: TListItem; x, y: integer
 begin
 
 end;
+
+
+initialization
+  RegisterClass(TButton);
+  RegisterClass(TListBox);
+  RegisterClass(TRadioButton);
+  RegisterClass(TCheckBox);
+  RegisterClass(TImage);
+  RegisterClass(TComboBox);
+  RegisterClass(TEdit);
+  RegisterClass(TLabel);
+  RegisterClass(TDsgnForm);
+  RegisterClass(TOpenDialog);
+  RegisterClass(TFontDialog);
+
+
 
 
 
