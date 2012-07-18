@@ -44,7 +44,7 @@ type
        _ControlsCreated:Integer;
     _comp:TControl;
     function CreateComponent(Sender: TObject; X, Y: Integer):TControl;
-    procedure WMWindowPosChanging(var Message: TWMWindowPosChanging); message WM_WINDOWPOSCHANGING;
+    //procedure WMWindowPosChanging(var Message: TWMWindowPosChanging); message WM_WINDOWPOSCHANGING;
     procedure Paint; override;
   public
 
@@ -56,7 +56,7 @@ var
   CurCom:TControl;
   imgdialog: TopenDialog;
   pathtoimg: string;
-  flag: integer;//0 - component,1: image,2: listbox, 3: combobox;
+ { flag: integer;//0 - component,1: image,2: listbox, 3: combobox; }
 implementation
 
 {$R *.lfm}
@@ -65,7 +65,6 @@ uses main;
 
 procedure TDsgnForm.FormCreate(Sender: TObject);
 begin
-  //_ControlsCreated:=1;
   compForm.SetControl(sender);
   imgdialog:=TOpenDialog.Create(self);
 end;
@@ -74,9 +73,6 @@ procedure TDsgnForm.FormChangeBounds(Sender: TObject);
 begin
  compform.SetControl(sender);
 end;
-
-
-//end;
 
 procedure TDsgnForm.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
   );
@@ -98,8 +94,6 @@ procedure TDsgnForm.FormMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
   _comp := CreateComponent(Sender, X, Y);
-//  if Assigned(sor.SelectControl) then
- // CompForm.AddToStringGrid(sor.SelectControl) else CompForm.AddToStringGrid(self);
 end;
 
 procedure TDsgnForm.FormMouseUp(Sender: TObject; Button: TMouseButton;
@@ -133,7 +127,6 @@ end;
 
 procedure TDsgnForm.FormShow(Sender: TObject);
 begin
- // self.Parent:=CompForm.Panel1;
 end;
 
 procedure TDsgnForm.MenuItem1Click(Sender: TObject);
@@ -158,26 +151,16 @@ begin
    CurComp.OnResize:=@OnResizeCtrl;
    CurComp.OnChangeBounds:=@OnMoveCtrl;
    CurComp.PopupMenu:=PopupMenu1;
-  // Sor.SelectControl:=CurComp;
    popupmenu1.Items[0].Visible:=true;
    popupmenu1.Items[1].Visible:=false;
-//   if assigned(popupmenu1.Items[1]) then
-  //   popupmenu1.Items[1].Free;
    if (CompareText(selected.ClassName,'TImage'))=0 then
     begin
       if assigned(popupmenu1.Items[1]) then
        begin
-      //m:=TMenuItem.Create(Self);
-      //m.Caption:='Set image';
-      //m.OnClick:=@ChooseImg;
       popupmenu1.Items[1].OnClick:=@ChooseImg;
       popupmenu1.Items[0].Visible:=false;
       popupmenu1.Items[1].Visible:=true;
-   //   flag:=1;
-   //   m.Free;
       end;
-       //popupmenu1.Items[0].Caption:='Set Image';
-       //popupmenu1.Items.OnClick:=@ChooseImg;
       end;
    if (CompareText(CurComp.ClassName,'TListBox'))=0 then
     begin
@@ -185,8 +168,6 @@ begin
       if (CompareText(CurComp.ClassName,'TComboBox'))=0 then
     begin
       end;
-   //selected.OnClick:=@OnMoveCtrl;
- //  Selected.
 end;
 
 procedure TDsgnForm.OnResizeCtrl(Sender: TObject);
@@ -238,14 +219,12 @@ var
         TWinControl(comp).Name := cname + IntToStr(_ControlsCreated);
         TWinControl(comp).Left := X;
         TWinControl(comp).Top := Y;
-       // comp.Tag:=_ControlsCreated;
       end
       else if (comp is TControl) then begin
         TControl(comp).Parent := TWinControl(Sender);
         TControl(comp).Name := cname + IntToStr(_ControlsCreated);
         TControl(comp).Left := X;
         TControl(comp).Top := Y;
-      //  comp.Tag:=_ControlsCreated;
       end;
       _ControlsCreated := _ControlsCreated + 1;
       Result := comp;
@@ -273,7 +252,6 @@ begin
   if (CompForm.ButtonIndex <> -1) then begin
       CreateClass := CompForm.ControlsClassPStd[CompForm.ButtonIndex];
     comp := __CreateComp();
-   // CompForm.AddToStringGrid(TControl(comp));
     __UpButton();
     __TrackEvent();
   end
@@ -283,29 +261,16 @@ begin
   if (none) then begin
     if (Sender <> Self) then begin
       sor.SelectControl := TControl(Sender);
-     // CompForm.AddToStringGridEx(CompForm.CompList.GetComponent(sor.SelectControl.Tag));
     end
     else begin
       sor.Selected := False;
       sor.SelectControl := nil;
-      //CompForm.AddToStringGridEx(CompForm.CompList.GetComponent(0));
     end;
   end
   else begin
     sor.SelectControl := TControl(comp);
   end;
   Result := TControl(comp);
-end;
-
-
-procedure TDsgnForm.WMWindowPosChanging(var Message: TWMWindowPosChanging);
-begin
-  inherited;
-  if (Self.ComponentState <> []) then begin
-    Exit;
-  end;
-  CompForm.Top := Self.Top - CompForm.Height;
-  CompForm.Left := Self.Left;
 end;
 
 procedure TDsgnForm.Paint;

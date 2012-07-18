@@ -139,7 +139,7 @@ object CompForm: TCompForm
     Height = 505
     Top = 56
     Width = 208
-    Caption = 'Property Inspector'
+    Caption = 'Property editor'
     ClientHeight = 487
     ClientWidth = 204
     TabOrder = 2

@@ -102,7 +102,6 @@ begin
   for i:=0 to list.Count -1 do begin
     CmpList.AddItem(list.GetComponent(i),i);
   end;
-//  ShowMessage(IntToStr(cmplist.Count));
   GenerateFormCode(CmpList);
   Stream.Position := 0;
   memo1.Lines.LoadFromStream(Stream);
@@ -222,7 +221,6 @@ if RadBtns.count> 0 then
   i:=0;
   HeaderCode.Add(s+': TRadioButton;');
 end;
-//HeaderCode.Add('b, w, h: Integer;');
 HeaderCode.Add('const');
 HeaderCode.Add('default = '+#39+'Comic Sans MS'+#39+';');
 HeaderCode.Add('');
@@ -326,9 +324,6 @@ begin
        if smb.img.switcher = true then
          begin
          list.Add(smb.compname+'.Picture.Bitmap.LoadFromFile('+#39+smb.img.path+#39+');');
-         //list.Add('b := loadbitmap('+#39+smb.img.path+#39+');');
-         //list.Add('getbitmapsize(b, w, h);');
-        // list.Add(' copycanvas(getbitmapcanvas(b),'+ smb.compname+'.canvas, 0, 0, w, h, 0, 0, w, h);');
          end else
        list.Add('//'+'load bitmap to image here');
   end;
@@ -356,7 +351,6 @@ begin
        list.Add(smb.compname+'.Top:='+IntToStr(smb.top)+';');
        list.Add(smb.compname+'.Width:='+IntToStr(smb.width)+';');
        list.Add(smb.compname+'.Height:='+IntToStr(smb.heigth)+';');
-       //list.Add(smb.caption+'.OnClick:=@YourClickProcedure';
        list.Add(smb.compname+'.Font.Name:='+smb.fontname+';');
        list.Add(smb.compname+'.Font.Color:='+ColorToString(smb.fontcolor)+';');
        list.Add(smb.compname+'.Font.Size:='+IntToStr(smb.fontsize)+';');
@@ -365,7 +359,6 @@ begin
        list.Add('//'+smb.compname+'\\');
        list.Add(smb.compname+':='+smb.classname+'.Create('+cmpList.GetComponent(0).compname+')');
        list.Add(smb.compname+'.Parent:='+cmpList.GetComponent(0).compname);
-      // list.Add(smb.caption+'.Caption:='+''+smb.caption+'');
        list.Add(smb.compname+'.Left:='+IntToStr(smb.left)+';');
        list.Add(smb.compname+'.Top:='+IntToStr(smb.top)+';');
        list.Add(smb.compname+'.Width:='+IntToStr(smb.width)+';');

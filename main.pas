@@ -105,7 +105,6 @@ type
 var
   CompForm: TCompForm;
   ecomp: TComponent;
-//  eitem: TListItem;//editing item
   curcomp: TControl;
   f: TDsgnForm;
   codefrm: TCodeGen;
@@ -131,15 +130,11 @@ end;
 //*********Properties editor********************
  Procedure GetProperties( Kinds: TTypeKinds; Source: TComponent; List: TStrings);
  var
-   pList: PPropList;
    pInfo: TPropInfoList;
-   Total, Props, i: Integer;
+   Props, i: Integer;
  begin
    PInfo:=TPropInfoList.Create(Source,Kinds);
-  // Total := GetTypeData(Source.ClassInfo).PropCount;
- //  GetMem(pList, sizeof(PPropInfo) * Total);
    try
-   // Props := GetPropList( Source.ClassInfo, Kinds, pList );
      Props:=pInfo.Count;
       for i := 0 to Props-1 do
         begin
@@ -153,13 +148,10 @@ end;
            List.AddObject(Pinfo.Items[i].Name, TObject(Pinfo.Items[i]));
            if Pinfo.Items[i].Name = 'Top' then
            List.AddObject(Pinfo.Items[i].Name, TObject(Pinfo.Items[i]));
-           //if Pinfo.Items[i].Name = 'Font' then
-           //List.AddObject(Pinfo.Items[i].Name, TObject(Pinfo.Items[i]));
            if Pinfo.Items[i].Name = 'Name' then
            List.AddObject(Pinfo.Items[i].Name, TObject(Pinfo.Items[i]));
         end;
    finally
-    //FreeMem(pList, sizeof(PPropInfo) * Total);
   end;
  end;
 
@@ -203,15 +195,12 @@ begin
   Self.FControlsClassPStd[7] := TComboBox;
   Self.FControlsClassPStd[8] := TRadioButton;
   Self.FControlsClassPStd[9] := TShape;
-  //eitem:=nil;
   f:=TDsgnForm.Create(self);
   f.Parent:=CompForm.Panel1;
   f.Left:=0;
   f.Top:=0;
- // f.OnShow:=SetControl;
   f.Show;
   ppEdit.OnExit:=OnExit;
- // AddToStringGrid(f);
  CompList.AddItem(ComponentToSimba(f),0);
  ofdlg:= TOpenDialog.Create(self);
  ofdlg.Filter:='Simba form files only|*.smf';
@@ -221,7 +210,6 @@ end;
 
 procedure TCompForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
- //ppEdit.Free;
  if Assigned(f) then
   f.Free;
 end;
@@ -238,15 +226,10 @@ var
   cmp: TComponent;
 begin
   if (Key = VK_DELETE) then begin
-  //if (sor.Selected) and (Assigned(sor.SelectControl)) then begin
- // FindComponent(sor.SelectControl.name).Destroy;
     cmp:=f.sor.SelectControl;
     f.sor.Selected:=false;
     f.sor.SelectControl:=nil;
-    //Assigned(cmp);
-   // showmessage(cmp.name);
    cmp.Free;
-
   end;
 end;
 
