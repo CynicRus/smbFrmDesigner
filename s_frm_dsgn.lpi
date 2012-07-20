@@ -60,11 +60,10 @@
         <ComponentName Value="CompForm"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmdesigner"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="331"/>
-        <CursorPos X="6" Y="332"/>
+        <TopLine Value="444"/>
+        <CursorPos X="1" Y="462"/>
         <UsageCount Value="180"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -290,10 +289,11 @@
         <ComponentName Value="CodeGen"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="code"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="10"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="340"/>
-        <CursorPos X="29" Y="237"/>
+        <TopLine Value="292"/>
+        <CursorPos X="31" Y="312"/>
         <UsageCount Value="143"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -541,7 +541,7 @@
         <UsageCount Value="9"/>
       </Unit59>
     </Units>
-    <JumpHistory Count="15" HistoryIndex="14">
+    <JumpHistory Count="16" HistoryIndex="15">
       <Position1>
         <Filename Value="design_frm.pas"/>
         <Caret Line="161" Column="5" TopLine="146"/>
@@ -602,6 +602,10 @@
         <Filename Value="frmdesigner.pas"/>
         <Caret Line="392" Column="29" TopLine="377"/>
       </Position15>
+      <Position16>
+        <Filename Value="frmdesigner.pas"/>
+        <Caret Line="335" Column="1" TopLine="331"/>
+      </Position16>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>

@@ -333,9 +333,6 @@ begin
 end;
 
 
-
-
-
 procedure TCompForm.lvSelectItem(Sender: TObject; Item: TListItem;
   Selected: Boolean);
 begin
