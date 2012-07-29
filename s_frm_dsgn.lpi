@@ -51,7 +51,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="15"/>
-        <UsageCount Value="195"/>
+        <UsageCount Value="196"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -64,7 +64,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="447"/>
         <CursorPos X="6" Y="464"/>
-        <UsageCount Value="195"/>
+        <UsageCount Value="196"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -93,7 +93,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="175"/>
         <CursorPos X="52" Y="189"/>
-        <UsageCount Value="189"/>
+        <UsageCount Value="190"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit4>
@@ -233,7 +233,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="358"/>
         <CursorPos X="10" Y="340"/>
-        <UsageCount Value="57"/>
+        <UsageCount Value="58"/>
         <Loaded Value="True"/>
       </Unit22>
       <Unit23>
@@ -252,7 +252,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="7"/>
         <CursorPos X="12" Y="11"/>
-        <UsageCount Value="169"/>
+        <UsageCount Value="170"/>
         <Loaded Value="True"/>
       </Unit24>
       <Unit25>
@@ -289,8 +289,8 @@
         <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
         <TopLine Value="393"/>
-        <CursorPos X="48" Y="411"/>
-        <UsageCount Value="158"/>
+        <CursorPos X="84" Y="411"/>
+        <UsageCount Value="159"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit28>
@@ -514,7 +514,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="44"/>
         <CursorPos X="3" Y="57"/>
-        <UsageCount Value="29"/>
+        <UsageCount Value="30"/>
         <Loaded Value="True"/>
       </Unit57>
       <Unit58>
@@ -540,7 +540,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="128"/>
         <CursorPos X="27" Y="146"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit60>
       <Unit61>
@@ -550,25 +550,25 @@
         <WindowIndex Value="0"/>
         <TopLine Value="16"/>
         <CursorPos X="3" Y="34"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="29"/>
       </Unit61>
       <Unit62>
         <Filename Value="SimbaParts\mufasatypes.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="mufasatypes"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="29"/>
       </Unit62>
       <Unit63>
         <Filename Value="..\Simba\Units\Misc\DCPCrypt\dcpbase64.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="dcpbase64"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="29"/>
       </Unit63>
       <Unit64>
         <Filename Value="..\Simba\Units\MMLCore\client.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="client"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="29"/>
       </Unit64>
       <Unit65>
         <Filename Value="..\Simba\Units\MMLCore\os_windows.pas"/>
@@ -585,7 +585,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="8"/>
         <CursorPos X="11" Y="26"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="29"/>
       </Unit66>
       <Unit67>
         <Filename Value="SimbaParts\keyinputintf.pas"/>
@@ -594,7 +594,7 @@
         <WindowIndex Value="0"/>
         <TopLine Value="60"/>
         <CursorPos X="1" Y="95"/>
-        <UsageCount Value="27"/>
+        <UsageCount Value="28"/>
       </Unit67>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
