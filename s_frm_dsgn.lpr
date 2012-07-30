@@ -7,8 +7,9 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, dcpbase64, client, frmdesigner, selectonruntime, design_frm, sclist,
-  code, bitmaps, mufasabase, mufasatypes, WinKeyInput, KeyInputIntf;
+  Forms, imagesforlazarus, dcpbase64, client, frmdesigner, selectonruntime,
+  design_frm, sclist, code, bitmaps, mufasabase, mufasatypes, WinKeyInput,
+  KeyInputIntf;
 
 {$R *.res}
 

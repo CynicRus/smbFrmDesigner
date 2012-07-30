@@ -14,7 +14,7 @@ object DsgnForm: TDsgnForm
   OnMouseUp = FormMouseUp
   OnPaint = FormPaint
   OnShow = FormShow
-  LCLVersion = '0.9.30.4'
+  LCLVersion = '1.1'
   object sor: TSelectOnRunTime
     Active = True
     MarkColor = clBlack
