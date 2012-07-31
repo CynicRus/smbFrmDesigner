@@ -1,7 +1,7 @@
 object CompForm: TCompForm
-  Left = 358
+  Left = 328
   Height = 586
-  Top = 116
+  Top = 121
   Width = 886
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsToolWindow
@@ -16,7 +16,7 @@ object CompForm: TCompForm
   OnKeyPress = FormKeyPress
   OnMouseWheel = FormMouseWheel
   OnShow = FormShow
-  LCLVersion = '0.9.30.4'
+  LCLVersion = '1.1'
   object PageControl1: TPageControl
     Left = 0
     Height = 56
@@ -123,6 +123,8 @@ object CompForm: TCompForm
     Height = 510
     Top = 56
     Width = 658
+    HorzScrollBar.Page = 637
+    VertScrollBar.Page = 489
     ClientHeight = 489
     ClientWidth = 637
     TabOrder = 1

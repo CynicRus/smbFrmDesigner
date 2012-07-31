@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, LCLType, Dialogs,
-  TypInfo, Math, cselectonruntime, Messages, ComCtrls, ExtCtrls, Menus,LazJPG;
+  TypInfo, Math, cselectonruntime, Messages, ComCtrls, ExtCtrls, Menus,bitmaps;
 
 type
  THControl = Class(TControl);
@@ -62,7 +62,7 @@ implementation
 {$R *.lfm}
 uses frmdesigner;
 {Image functions}
-function JpegToBitmap(jpeg: TStream):TBitmap;
+function JpegToBitmap(jpeg: string):TBitmap;
 var
  jpg:TJpegImage;
  bmp:TBitmap;
@@ -70,8 +70,7 @@ var
    bmp := TBitmap.Create;
    jpg:=TJpegImage.Create;
    try
-   jpeg.Position:=0;
-   jpg.LoadFromStream(jpeg);
+   jpg.LoadFromFile(jpeg);
    Bmp.Height      := jpg.Height;
    Bmp.Width       := jpg.Width;
    Bmp.PixelFormat := pf24bit;
@@ -80,21 +79,21 @@ var
    result:=bmp;
    finally
      jpg.Free;
-     bmp.Free;
    end;
  end;
-function PngToBitmap(png: TStream):TBitmap;
+function PngToBitmap(png: string):TBitmap;
 var
   bmp: TBitmap;
   pic: TPortableNetworkGraphic;
 begin
+   pic:=TPortableNetworkGraphic.Create;
    bmp := TBitmap.Create;
    try
-   pic.LoadFromStream(png);
+   pic.LoadFromFile(png);
    bmp.Assign(pic);
    result:=bmp;
    finally
-     bmp.Free;
+     pic.Free;
    end;
 end;
 
@@ -199,11 +198,11 @@ begin
       popupmenu1.Items[1].Visible:=true;
       end;
       end;
-   if (CompareText(CurComp.ClassName,'TListBox'))=0 then
-    begin
+      if (CompareText(CurComp.ClassName,'TListBox'))=0 then
+      begin
       end;
       if (CompareText(CurComp.ClassName,'TComboBox'))=0 then
-    begin
+      begin
       end;
 end;
 
@@ -227,12 +226,13 @@ begin
    begin
    imgstream:=TMemoryStream.Create();
    imgstream.LoadFromFile(imgdialog.FileName);
-  // pathtoimg:=imgdialog.FileName;
+   pathtoimg:=imgdialog.FileName;
+   //imgstream.Position:=0;
    i:=ResolveFileType(imgstream);
    case i of
-   1: begin TImage(CurComp).AutoSize:=true; TImage(CurComp).Picture.LoadFromStream(imgstream);end;
-   3: begin TImage(CurComp).AutoSize:=true; TImage(CurComp).Picture.Bitmap:=JpegToBitmap(imgstream);end;
-   4: begin TImage(CurComp).AutoSize:=true; TImage(CurComp).Picture.Bitmap:=PngToBitmap(imgstream);end;
+   1: begin TImage(CurComp).AutoSize:=true; TImage(CurComp).Picture.LoadFromFile(pathtoimg);end;
+   3: begin TImage(CurComp).AutoSize:=true; TImage(CurComp).Picture.Bitmap:=JpegToBitmap(pathtoimg);end;
+   4: begin TImage(CurComp).AutoSize:=true; TImage(CurComp).Picture.Bitmap:=PngToBitmap(pathtoimg);end;
    end;
    imgstream.Free;
    end;
