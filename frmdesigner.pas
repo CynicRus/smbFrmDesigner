@@ -7,7 +7,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
-  stdctrls, ExtCtrls, Menus, LCLIntf, LCLType, LCLProc, LResources, LMessages, Grids, design_frm,
+  stdctrls, ExtCtrls, Menus, LCLIntf, LCLType, LCLProc, LResources, LMessages, design_frm,
   types,sclist,StrUtils,bitmaps,code;
 
 type
@@ -18,6 +18,9 @@ type
   { TCompForm }
 
   TCompForm = class(TForm)
+    MenuItem15: TMenuItem;
+    MenuItem16: TMenuItem;
+    MenuItem17: TMenuItem;
     ppEdit: TEdit;
     GroupBox1: TGroupBox;
     lv: TListView;
@@ -72,6 +75,8 @@ type
     procedure lvMouseLeave(Sender: TObject);
     procedure lvSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
     procedure MenuItem10Click(Sender: TObject);
+    procedure MenuItem15Click(Sender: TObject);
+    procedure MenuItem17Click(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
     procedure MenuItem4Click(Sender: TObject);
     procedure MenuItem5Click(Sender: TObject);
@@ -100,6 +105,8 @@ type
     procedure UpdateControlData();
     procedure SetControl(Sender: TObject);
     function MouseClickOnSubItem(rc: TRect; item: TListItem;x,y: integer): boolean;
+    procedure SetModeScript();
+    procedure SetModeProgress();
   end;
 
 var
@@ -200,6 +207,7 @@ begin
   f.Left:=0;
   f.Top:=0;
   f.Show;
+  SetModeScript;
   ppEdit.OnExit:=OnExit;
  CompList.AddItem(ComponentToSimba(f),0);
  ofdlg:= TOpenDialog.Create(self);
@@ -349,6 +357,16 @@ begin
   FormToSCList(f);
   codefrm.CreateScript(CompList);
   codefrm.Show;
+end;
+
+procedure TCompForm.MenuItem15Click(Sender: TObject);
+begin
+  SetModeScript;
+end;
+
+procedure TCompForm.MenuItem17Click(Sender: TObject);
+begin
+  SetModeProgress;
 end;
 
 procedure TCompForm.MenuItem2Click(Sender: TObject);
@@ -614,6 +632,56 @@ function TCompForm.MouseClickOnSubItem(rc: TRect; item: TListItem; x, y: integer
   ): boolean;
 begin
 
+end;
+
+procedure TCompForm.SetModeScript();
+var
+   i,j: integer;
+begin
+  if not assigned(F) then exit;
+  for i:=0 to CompForm.ComponentCount -1 do begin
+     if CompareText(CompForm.Components[i].ClassName,'TToolButton')=0 then
+      begin
+       j:=CompForm.Components[i].Tag;
+        case j of
+        2: begin TToolButton(CompForm.Components[i]).Enabled:=true;TToolButton(CompForm.Components[i]).Visible:=true; end;
+        4: begin TToolButton(CompForm.Components[i]).Enabled:=true;TToolButton(CompForm.Components[i]).Visible:=true; end;
+        5: begin TToolButton(CompForm.Components[i]).Enabled:=true;TToolButton(CompForm.Components[i]).Visible:=true; end;
+        6: begin TToolButton(CompForm.Components[i]).Enabled:=true;TToolButton(CompForm.Components[i]).Visible:=true; end;
+        7: begin TToolButton(CompForm.Components[i]).Enabled:=true;TToolButton(CompForm.Components[i]).Visible:=true; end;
+        8: begin TToolButton(CompForm.Components[i]).Enabled:=true;TToolButton(CompForm.Components[i]).Visible:=true; end;
+        9: begin TToolButton(CompForm.Components[i]).Enabled:=true;TToolButton(CompForm.Components[i]).Visible:=true; end;
+        end;
+      end;
+  end;
+  MenuItem15.Checked:=true;
+  MenuItem17.Checked:=false;
+  f.SetMode(0);
+end;
+
+procedure TCompForm.SetModeProgress();
+var
+   i,j: integer;
+begin
+  if not assigned(F) then exit;
+  for i:=0 to CompForm.ComponentCount -1 do begin
+     if CompareText(CompForm.Components[i].ClassName,'TToolButton')=0 then
+      begin
+       j:=CompForm.Components[i].Tag;
+        case j of
+        2: begin TToolButton(CompForm.Components[i]).Enabled:=false;TToolButton(CompForm.Components[i]).Visible:=false; end;
+        4: begin TToolButton(CompForm.Components[i]).Enabled:=false;TToolButton(CompForm.Components[i]).Visible:=false; end;
+        5: begin TToolButton(CompForm.Components[i]).Enabled:=false;TToolButton(CompForm.Components[i]).Visible:=false; end;
+        6: begin TToolButton(CompForm.Components[i]).Enabled:=false;TToolButton(CompForm.Components[i]).Visible:=false; end;
+        7: begin TToolButton(CompForm.Components[i]).Enabled:=false;TToolButton(CompForm.Components[i]).Visible:=false; end;
+        8: begin TToolButton(CompForm.Components[i]).Enabled:=false;TToolButton(CompForm.Components[i]).Visible:=false; end;
+        9: begin TToolButton(CompForm.Components[i]).Enabled:=false;TToolButton(CompForm.Components[i]).Visible:=false; end;
+        end;
+      end;
+  end;
+  MenuItem15.Checked:=false;
+  MenuItem17.Checked:=true;
+  f.SetMode(2);
 end;
 
 

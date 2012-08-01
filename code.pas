@@ -28,6 +28,7 @@ type
     FormCode,LabelsCode,EditsCode,ImagesCode,ButtonsCode,CheckBoxesCode,ListBoxesCode,
     ComboBoxesCode, RadBtnsCode,HeaderCode,ScriptCode: TStringList;
     procedure GenerateScriptHeader;
+    procedure GenerateProgressHeader;
     { private declarations }
   public
     { public declarations }
@@ -35,6 +36,7 @@ type
     Procedure GetComponentCode(smbl: TSimbaComponentList);
     Procedure SmbToCodeList(smb: TSimbaComponent;list: TStringList);
     Procedure GenerateFormCode(smbl: TSimbaComponentList);
+    Procedure GenerateProgressCode(smbl: TSimbaComponentList);
     Procedure CreateFormCode(smb: TSimbaComponent;List: TStringList);
     function GetSimbaCType(smb: TSimbaComponent):integer;
   end; 
@@ -330,7 +332,7 @@ end;
 procedure TCodeGen.SmbToCodeList(smb: TSimbaComponent; list: TStringList);
 var
   i,p,u: integer;
-  s,s1: string;//strings for bitmap;
+  s,s1,s2: string;//strings for bitmap;
 begin
   i:=GetSimbaCtype(smb);
   Case i of
@@ -369,7 +371,7 @@ begin
        list.Add(GenSpaces(2)+'end;');
   end;
   3: begin
-       s:=''; s1:='';
+       s:=''; s1:=''; s2:='';
        list.Add('//'+smb.compname+'\\');
        list.Add(GenSpaces(1)+ smb.compname+':='+smb.classname+'.Create('+cmpList.GetComponent(0).compname+');');
        list.Add(GenSpaces(2)+'with'+GenSpaces(1)+smb.compname+GenSpaces(1)+'do');
@@ -382,8 +384,10 @@ begin
        list.Add(GenSpaces(6)+'Height:='+IntToStr(smb.heigth)+';');
        if smb.img.switcher = true then
          begin
-         s:=smb.img.imgcode;
-         s1:=#13#10+GenSpaces(6)+#39;
+          s:=smb.img.imgcode;
+          if (smb.heigth<= 24) and (smb.width <=24) then
+          begin
+          s1:=#13#10+GenSpaces(6)+#39;
           for p:=0 to Length(s)-1 do begin
             SetLength(s1,Length(s1)+1);
             s1[Length(s1)]:=s[p+1];
@@ -412,13 +416,19 @@ begin
               s1[Length(s1)]:=#39;
               end;
             end;
-          end;
-          List.Add(GenSpaces(6)+'bmp'+IntToStr(img)+':=TBitmap.Create;');
+            end;
           List.Add(GenSpaces(6)+'bmps'+IntToStr(img)+':=GetMufasaBitmap(BitmapFromString('+IntToStr(smb.width)+','+IntToStr(smb.Heigth)+','+s1+#39+'));');
+          List.Add(GenSpaces(6)+'bmp'+IntToStr(img)+':=bmps'+IntToStr(img)+'.ToTBitmap;');
+          List.Add(GenSpaces(6)+'Picture.Bitmap.handle:=bmp'+IntToStr(img)+'.handle;');
+          end else begin
+          s2:=#39+s+#39;
+        //  List.Add(GenSpaces(6)+'bmp'+IntToStr(img)+':=TBitmap.Create;');
+          List.Add(GenSpaces(6)+'bmps'+IntToStr(img)+':=GetMufasaBitmap(BitmapFromString('+IntToStr(smb.width)+','+IntToStr(smb.Heigth)+','+s2+'));');
           List.Add(GenSpaces(6)+'bmp'+IntToStr(img)+':=bmps'+IntToStr(img)+'.ToTBitmap;');
           List.Add(GenSpaces(6)+'Picture.Bitmap.handle:=bmp'+IntToStr(img)+'.handle;');
          // List.Add(GenSpaces(6)+'DrawBitmap(bmps'+IntToStr(img)+',Canvas,'+IntToStr(smb.width)+','+IntToStr(smb.Heigth)+');');
          //list.Add(GenSpaces(6)+'Picture.Bitmap.LoadFromFile('+#39+smb.img.path+#39+');');
+          end;
          end else
        list.Add(GenSpaces(6)+'//'+'load bitmap to image here');
        list.Add(GenSpaces(2)+'end;');
@@ -576,6 +586,11 @@ begin
 
 end;
 
+procedure TCodeGen.GenerateProgressCode(smbl: TSimbaComponentList);
+begin
+
+end;
+
 procedure TCodeGen.CreateFormCode(smb: TSimbaComponent;list: TStringList);
 begin
   list.Add('//'+smb.compname+'\\');
@@ -593,6 +608,83 @@ begin
   list.Add(GenSpaces(2)+'end;');
 end;
 
+procedure TCodeGen.GenerateProgressHeader;
+var
+ i: integer;
+ s: string;
+ b: integer;
+begin
+  b:=0;
+HeaderCode.Add('var');
+HeaderCode.Add(GenSpaces(2)+CmpList.GetComponent(0).compname+':TForm;');
+if Labels.count> 0 then
+  begin
+  s:=GenSpaces(2);
+  for i:=0 to labels.count -1 do
+  begin
+   if i<labels.Count-1 then
+   s:=s+Labels.GetComponent(i).compname+','
+    else
+   s:=s+Labels.GetComponent(i).compname;
+  end;
+  i:=0;
+  HeaderCode.Add(s+': string;');
+  end;
+  if Images.count> 0 then
+  begin
+  s:=GenSpaces(2);
+  for i:=0 to Images.count -1 do
+  begin
+   if Images.GetComponent(i).img.switcher = true then inc(b);
+   if i<Images.Count-1 then
+   s:=s+Images.GetComponent(i).compname+','
+    else
+   s:=s+Images.GetComponent(i).compname
+  end;
+  i:=0;
+  HeaderCode.Add(s+': TBitmap;');
+end;
+if img > 0 then
+begin
+ s:=GenSpaces(2);
+  for i:=0 to img -1 do
+  begin
+   if i<img-1 then
+   s:=s+'bmps'+inttostr(i)+','
+    else
+   s:=s+'bmps'+inttostr(i);
+  end;
+  i:=0;
+  HeaderCode.Add(s+': TMufasaBitmap;');
+end;
+{if img > 0 then
+begin
+ s:=GenSpaces(2);
+  for i:=0 to img -1 do
+  begin
+   if i<img-1 then
+   s:=s+'bmp'+inttostr(i)+','
+    else
+   s:=s+'bmp'+inttostr(i);
+  end;
+  i:=0;
+  HeaderCode.Add(s+': TBitmap;');
+end;}
+HeaderCode.Add('const');
+HeaderCode.Add(GenSpaces(2)+'default = '+#39+'Comic Sans MS'+#39+';');
+HeaderCode.Add('');
+HeaderCode.Add('');
+HeaderCode.Add('');
+HeaderCode.Add('procedure YourClickProcedure(Sender: TObject);');
+HeaderCode.Add('begin');
+HeaderCode.Add(GenSpaces(2)+'ShowMessage('+#39+'click'+#39+');');
+HeaderCode.Add('end;');
+end;
+
+Procedure GenerateProgressCode(smbl: TSimbaComponentList);
+begin
+
+end;
 
 
 

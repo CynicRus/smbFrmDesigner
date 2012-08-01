@@ -5,9 +5,8 @@ unit design_frm;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, LCLType, Dialogs,
-  TypInfo, Math, cselectonruntime, Messages, ComCtrls, ExtCtrls, Menus,bitmaps;
-
+  Classes, SysUtils, FileUtil, Forms, Controls, LCLType,LCLIntf, Dialogs,
+  TypInfo, Math, cselectonruntime, Messages, ComCtrls, ExtCtrls, Menus,bitmaps,Graphics ;
 type
  THControl = Class(TControl);
   { TDsgnForm }
@@ -41,13 +40,21 @@ type
       var CanMove: Boolean; var CanMoveOutParent: Boolean);
   private
     { private declarations }
-       _ControlsCreated:Integer;
+    _ControlsCreated:Integer;
     _comp:TControl;
+     FMode: integer;{0: script form; 1:form in smart; 2: progress report}
     function CreateComponent(Sender: TObject; X, Y: Integer):TControl;
     function ResolveFileType(AStream: TStream): Integer;
+    procedure CreateParams(var Params: TCreateParams); override;
+    procedure CreateWnd; override;
     procedure Paint; override;
+    procedure SetScriptMode();
+    procedure SetProgressMode();
+    procedure SetSMARTMode();
   public
-        procedure DeleteComponent();
+    procedure DeleteComponent();
+    procedure SetMode(i: integer);
+    function GetMode():integer;
     { public declarations }
   end; 
 
@@ -103,12 +110,14 @@ procedure TDsgnForm.FormCreate(Sender: TObject);
 begin
   compForm.SetControl(sender);
   imgdialog:=TOpenDialog.Create(self);
+  SetMode(0);
 end;
 
 procedure TDsgnForm.FormChangeBounds(Sender: TObject);
 begin
  compform.SetControl(sender);
 end;
+
 
 procedure TDsgnForm.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
   );
@@ -361,6 +370,19 @@ begin
   end;
 end;
 
+procedure TDsgnForm.CreateParams(var Params: TCreateParams);
+begin
+  inherited CreateParams(Params);
+  Params.Style := WS_CAPTION or WS_SIZEBOX or WS_SYSMENU;
+  Params.ExStyle := WS_EX_DLGMODALFRAME or WS_EX_WINDOWEDGE;
+end;
+
+procedure TDsgnForm.CreateWnd;
+begin
+  inherited CreateWnd;
+  SendMessage(Self.Handle, WM_SETICON, 1, 0);
+end;
+
 procedure TDsgnForm.DeleteComponent();
 begin
   if not assigned(CurComp) then exit else
@@ -371,9 +393,44 @@ begin
     end;
 end;
 
+procedure TDsgnForm.SetMode(i: integer);
+begin
+  case i of
+  0: begin Self.FMode:=i; SetScriptMode; end;
+  1: begin exit; end;
+  2: begin Self.FMode:=i; SetProgressMode; end;
+  end;
+end;
+
+function TDsgnForm.GetMode(): integer;
+begin
+  result:=FMode;
+end;
+
 procedure TDsgnForm.Paint;
 begin
   inherited Paint;
+end;
+
+procedure TDsgnForm.SetScriptMode();
+begin
+  Self.BorderStyle:=BsSizeable;
+  Self.Width:=320;
+  Self.Height:=240;
+  Self.Caption:=Self.Name;
+end;
+
+procedure TDsgnForm.SetProgressMode();
+begin
+  Self.BorderStyle:=BsDialog;
+  Self.Width:=775;
+  Self.Height:=563;
+  Self.Caption:='Progress form design mode (Some settings are not considered)';
+end;
+
+procedure TDsgnForm.SetSMARTMode();
+begin
+ //TO DO
 end;
 
 end.
