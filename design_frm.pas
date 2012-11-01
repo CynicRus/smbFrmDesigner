@@ -270,12 +270,15 @@ var
       cname := pInfo^.Name;
       if (comp is TWinControl) then begin
         TWinControl(comp).ParentWindow := TWinControl(Sender).Handle;
-        TWinControl(comp).Parent := TWinControl(Sender);
+      //  if comparetext(TWinControl(comp).ClassName,'TForm') =0  then
+        TWinControl(comp).Parent := TWinControl(Sender); //else TWinControl(comp).Parent:=DsgnForm;
         TWinControl(comp).Name := cname + IntToStr(_ControlsCreated);
         TWinControl(comp).Left := X;
         TWinControl(comp).Top := Y;
       end
       else if (comp is TControl) then begin
+       // if comparetext(TWinControl(Sender).ClassName,'TForm')=0 then
+        Tcontrol(comp).Parent := TWinControl(Sender);// else exit;
         TControl(comp).Parent := TWinControl(Sender);
         TControl(comp).Name := cname + IntToStr(_ControlsCreated);
         TControl(comp).Left := X;

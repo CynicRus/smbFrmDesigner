@@ -86,7 +86,7 @@ type
   private
     FButtonDown: TToolButton;
     FControlsClassPStd: TControlsClassStandard;
-    function ComponentToSimba(cmp: TControl): TSimbaComponent;
+    procedure ComponentToSimba(cmp: TControl;var smb: TSimbaComponent);
     function GetButtonIndex: Integer;
     procedure ApplySimbaToComponent(smb: TSimbaComponent;cmp: TControl);
     procedure SaveDesignForm(filename: string);
@@ -190,6 +190,8 @@ end;
 { TCompForm }
 
 procedure TCompForm.FormCreate(Sender: TObject);
+var
+  smbCmp: TSimbaComponent;
 begin
   CompList:=TSimbaComponentList.Create;
   Self.FControlsClassPStd[0] := nil;
@@ -209,7 +211,8 @@ begin
   f.Show;
   SetModeScript;
   ppEdit.OnExit:=OnExit;
- CompList.AddItem(ComponentToSimba(f),0);
+  smbCmp:= CompList.AddItem;
+ ComponentToSimba(f,smbCmp);
  ofdlg:= TOpenDialog.Create(self);
  ofdlg.Filter:='Simba form files only|*.smf';
  sfdlg:= TSaveDialog.Create(self);
@@ -459,9 +462,8 @@ begin
  end;
 end;
 
-function TCompForm.ComponentToSimba(cmp: TControl): TSimbaComponent;
+procedure TCompForm.ComponentToSimba(cmp: TControl;var smb: TSimbaComponent);
 var
-   smb: TSimbaComponent;
    mb: TMufasaBitmap;
 begin
  mb:=TMufasaBitmap.Create;
@@ -471,7 +473,7 @@ begin
    smb.width:=cmp.Width;
    smb.left:=cmp.Left;
    smb.heigth:=cmp.Height;
-   smb.classname:=cmp.ClassName;
+   smb.clsname:=cmp.ClassName;
    smb.compname:=cmp.Name;
    smb.fontcolor:=cmp.Font.Color;
    if (CompareText(cmp.Font.Name,'default'))=0 then
@@ -486,7 +488,6 @@ begin
    finally
      mb.Free;
      end;
-   result:=smb;
 end;
 
 procedure TCompForm.ApplySimbaToComponent(smb: TSimbaComponent; cmp: TControl);
@@ -570,14 +571,18 @@ end;
 procedure TCompForm.FormToSCList(form: TForm);
 var
    i: integer;
+   smb: TSimbaComponent;
 begin
  if assigned(complist) then
    complist.Free;
   complist:=TSimbaComponentList.Create;
-  complist.AddItem(ComponentToSimba(form),0);
+  smb:=CompList.AddItem;
+  ComponentToSimba(form,smb);
   for i := 0 to form.ControlCount - 1 do
    begin
-     CompList.AddItem(ComponentToSimba(Form.Controls[i]),i+1);
+      smb:=CompList.AddItem;
+     //CompList.AddItem(ComponentToSimba(Form.Controls[i]),i+1);
+      ComponentToSimba(Form.Controls[i],smb);
    end;
 end;
 

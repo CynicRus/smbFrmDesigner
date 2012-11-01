@@ -1,5 +1,0 @@
-<?xml version="1.0"?>
-<CONFIG>
-  <Compiler Value="C:\lazarus\fpc\2.6.0\bin\x86_64-win64\fpc.exe" Date="1080972898"/>
-  <Params Value=" -MObjFPC -Scghi -O1 -gl -vewnhi -l -FuC:\lazarus\lcl\units\x86_64-win64 -FuC:\lazarus\lcl\units\x86_64-win64\win32 -FuC:\lazarus\packager\units\x86_64-win64 -FuE:\Coding\smbFrmDesigner\ -Fu. -FUE:\Coding\smbFrmDesigner\lib\x86_64-win64\ -dLCL -dLCLwin32 selectonruntime.pas"/>
-</CONFIG>

@@ -5,7 +5,7 @@ object CompForm: TCompForm
   Width = 1023
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsToolWindow
-  Caption = 'Form Designer for Simba v 0.2 [Beta]'
+  Caption = 'Form Designer for Simba v 0.4 '
   ClientHeight = 632
   ClientWidth = 1023
   KeyPreview = True
@@ -520,6 +520,7 @@ object CompForm: TCompForm
       end
       object MenuItem17: TMenuItem
         Caption = 'Progress report'
+        Visible = False
         OnClick = MenuItem17Click
       end
     end
