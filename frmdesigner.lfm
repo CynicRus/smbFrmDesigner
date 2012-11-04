@@ -5,7 +5,7 @@ object CompForm: TCompForm
   Width = 1023
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsToolWindow
-  Caption = 'Form Designer for Simba v 0.4 '
+  Caption = 'Form Designer for Simba v 0.5'
   ClientHeight = 632
   ClientWidth = 1023
   KeyPreview = True

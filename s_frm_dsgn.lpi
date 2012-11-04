@@ -64,10 +64,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmdesigner"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="365"/>
+        <TopLine Value="401"/>
         <CursorPos X="3" Y="367"/>
         <UsageCount Value="201"/>
         <Loaded Value="True"/>
@@ -95,10 +94,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="design_frm"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="260"/>
-        <CursorPos X="56" Y="281"/>
+        <TopLine Value="261"/>
+        <CursorPos X="50" Y="281"/>
         <UsageCount Value="202"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -128,10 +128,12 @@
       </Unit7>
       <Unit8>
         <Filename Value="C:\lazarus\lcl\include\control.inc"/>
+        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1187"/>
+        <TopLine Value="1100"/>
         <CursorPos X="1" Y="1118"/>
         <UsageCount Value="50"/>
+        <Loaded Value="True"/>
       </Unit8>
       <Unit9>
         <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
@@ -142,12 +144,10 @@
       </Unit9>
       <Unit10>
         <Filename Value="C:\lazarus\lcl\interfaces\win32\win32callback.inc"/>
-        <EditorIndex Value="9"/>
         <WindowIndex Value="0"/>
         <TopLine Value="2209"/>
         <CursorPos X="1" Y="2224"/>
         <UsageCount Value="20"/>
-        <Loaded Value="True"/>
       </Unit10>
       <Unit11>
         <Filename Value="gsvobjectinspector.pas"/>
@@ -223,7 +223,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="code"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="8"/>
         <WindowIndex Value="0"/>
         <TopLine Value="485"/>
         <CursorPos X="53" Y="500"/>
@@ -364,12 +364,10 @@
       </Unit36>
       <Unit37>
         <Filename Value="C:\lazarus\lcl\include\menuitem.inc"/>
-        <EditorIndex Value="8"/>
         <WindowIndex Value="0"/>
         <TopLine Value="243"/>
         <CursorPos X="1" Y="258"/>
         <UsageCount Value="23"/>
-        <Loaded Value="True"/>
       </Unit37>
       <Unit38>
         <Filename Value="C:\lazarus\lcl\include\picture.inc"/>
@@ -517,15 +515,13 @@
       <Unit56>
         <Filename Value="cselectonruntime.pas"/>
         <UnitName Value="cSelectOnRunTime"/>
-        <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="609"/>
         <CursorPos X="1" Y="624"/>
         <UsageCount Value="10"/>
-        <Loaded Value="True"/>
       </Unit56>
     </Units>
-    <JumpHistory Count="25" HistoryIndex="24">
+    <JumpHistory Count="28" HistoryIndex="27">
       <Position1>
         <Filename Value="frmdesigner.pas"/>
         <Caret Line="583" Column="1" TopLine="566"/>
@@ -548,84 +544,96 @@
       </Position5>
       <Position6>
         <Filename Value="code.pas"/>
-        <Caret Line="468" Column="52" TopLine="670"/>
+        <Caret Line="465" Column="60" TopLine="442"/>
       </Position6>
       <Position7>
         <Filename Value="code.pas"/>
-        <Caret Line="465" Column="60" TopLine="442"/>
+        <Caret Line="500" Column="53" TopLine="485"/>
       </Position7>
       <Position8>
-        <Filename Value="code.pas"/>
-        <Caret Line="500" Column="53" TopLine="485"/>
+        <Filename Value="design_frm.pas"/>
+        <Caret Line="273" Column="16" TopLine="265"/>
       </Position8>
       <Position9>
         <Filename Value="design_frm.pas"/>
-        <Caret Line="273" Column="16" TopLine="265"/>
+        <Caret Line="274" Column="57" TopLine="258"/>
       </Position9>
       <Position10>
         <Filename Value="design_frm.pas"/>
-        <Caret Line="274" Column="57" TopLine="258"/>
+        <Caret Line="267" Column="1" TopLine="258"/>
       </Position10>
       <Position11>
         <Filename Value="design_frm.pas"/>
-        <Caret Line="267" Column="1" TopLine="258"/>
+        <Caret Line="268" Column="1" TopLine="258"/>
       </Position11>
       <Position12>
         <Filename Value="design_frm.pas"/>
-        <Caret Line="268" Column="1" TopLine="258"/>
+        <Caret Line="269" Column="1" TopLine="258"/>
       </Position12>
       <Position13>
         <Filename Value="design_frm.pas"/>
-        <Caret Line="269" Column="1" TopLine="258"/>
+        <Caret Line="270" Column="1" TopLine="258"/>
       </Position13>
       <Position14>
         <Filename Value="design_frm.pas"/>
-        <Caret Line="270" Column="1" TopLine="258"/>
+        <Caret Line="271" Column="1" TopLine="258"/>
       </Position14>
       <Position15>
         <Filename Value="design_frm.pas"/>
-        <Caret Line="271" Column="1" TopLine="258"/>
+        <Caret Line="272" Column="1" TopLine="258"/>
       </Position15>
       <Position16>
         <Filename Value="design_frm.pas"/>
-        <Caret Line="272" Column="1" TopLine="258"/>
+        <Caret Line="274" Column="1" TopLine="258"/>
       </Position16>
       <Position17>
         <Filename Value="design_frm.pas"/>
-        <Caret Line="274" Column="1" TopLine="258"/>
+        <Caret Line="273" Column="11" TopLine="258"/>
       </Position17>
       <Position18>
         <Filename Value="design_frm.pas"/>
-        <Caret Line="273" Column="11" TopLine="258"/>
+        <Caret Line="267" Column="1" TopLine="258"/>
       </Position18>
       <Position19>
         <Filename Value="design_frm.pas"/>
-        <Caret Line="267" Column="1" TopLine="258"/>
+        <Caret Line="273" Column="40" TopLine="258"/>
       </Position19>
       <Position20>
-        <Filename Value="cselectonruntime.pas"/>
-        <Caret Line="624" Column="1" TopLine="609"/>
+        <Filename Value="design_frm.pas"/>
+        <Caret Line="267" Column="1" TopLine="258"/>
       </Position20>
       <Position21>
         <Filename Value="design_frm.pas"/>
-        <Caret Line="273" Column="40" TopLine="258"/>
+        <Caret Line="274" Column="97" TopLine="260"/>
       </Position21>
       <Position22>
         <Filename Value="design_frm.pas"/>
-        <Caret Line="267" Column="1" TopLine="258"/>
+        <Caret Line="267" Column="1" TopLine="260"/>
       </Position22>
       <Position23>
-        <Filename Value="design_frm.pas"/>
-        <Caret Line="274" Column="97" TopLine="260"/>
+        <Filename Value="frmdesigner.pas"/>
+        <Caret Line="353" Column="38" TopLine="345"/>
       </Position23>
       <Position24>
         <Filename Value="design_frm.pas"/>
-        <Caret Line="267" Column="1" TopLine="260"/>
+        <Caret Line="271" Column="8" TopLine="260"/>
       </Position24>
       <Position25>
-        <Filename Value="frmdesigner.pas"/>
-        <Caret Line="353" Column="38" TopLine="345"/>
+        <Filename Value="design_frm.pas"/>
+        <Caret Line="281" Column="38" TopLine="260"/>
       </Position25>
+      <Position26>
+        <Filename Value="design_frm.pas"/>
+        <Caret Line="278" Column="11" TopLine="260"/>
+      </Position26>
+      <Position27>
+        <Filename Value="design_frm.pas"/>
+        <Caret Line="274" Column="57" TopLine="253"/>
+      </Position27>
+      <Position28>
+        <Filename Value="design_frm.pas"/>
+        <Caret Line="278" Column="10" TopLine="261"/>
+      </Position28>
     </JumpHistory>
   </ProjectOptions>
   <CompilerOptions>
